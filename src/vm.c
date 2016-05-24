@@ -3,6 +3,10 @@
 #include <string.h>
 
 #define q(a) printf("  %d\n", a)
+#define WGRN  "\x1B[32m"
+#define WYEL  "\x1B[33m"
+#define WBLU  "\x1B[34m"
+#define WNRM  "\x1B[0m"
 
 typedef enum {
     PUSH_INT,
@@ -95,7 +99,7 @@ void eval(int j) {
 
 // echoes stack and ins info after j
 void echo_stack(int j) {
-    printf("after %s", opcode_names[j]);
+    printf("%safter %s", WBLU, opcode_names[j]);
     int m;
     if (arity[j] > 0) {
         printf("(");
@@ -105,22 +109,27 @@ void echo_stack(int j) {
         }
         printf(")");
     }
-    printf("\t\t");
+    if (arity[j] == 0) {
+        printf("\t\t\t");
+    } else {
+        printf("\t\t");
+    }
+
     
-    printf("locals:[");
+    printf("%slocals:[", WYEL);
     for(m = 0; m < t; m++) {
         printf("%d: %d", touched[m], env[touched[m]]);
         if (m < t - 1) { printf(" ");}
     }
     printf("] ");
 
-    printf("stack: [");
+    printf("%sstack: [", WGRN);
     for(m = 0;m < sp + 1; m++) {
         printf("%d", stack[m]);
         if (m < sp) { printf(" "); }
     }
     printf("]");
-    printf("\n");
+    printf("%s\n", WNRM);
 }
 
 int main(int argc, char* argv[]) {

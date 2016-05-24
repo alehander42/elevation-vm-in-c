@@ -14,6 +14,8 @@ add_int
 display
 ```
 
+![screenshot of vm working with helpful color debug stack and opcode listings](http://imgur.com/d6iXDGLl.png)
+
 ## todo
 
 -[ ] parse ecode files
