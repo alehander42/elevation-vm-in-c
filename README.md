@@ -1,4 +1,4 @@
-# a vm in rust
+# elevation-vm
 
 goals: lightweight concurrency (erlang-like), gc experiments
 
