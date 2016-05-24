@@ -1,0 +1,52 @@
+include: stdio
+
+enum Opcode:
+  :PUSHINT :ADDINT :SAVELOCAL :DISPLAY :EXIT
+
+const arity = [1s, 1, 0, 0]
+
+const program = [
+  :PUSHINT, 2,
+  :PUSHINT, -4,
+  :ADDINT,
+  :DISPLAY,
+  :EXIT
+]
+
+let ip = 0s
+
+def fetch:
+  program[ip]
+
+active = true
+sp = -1
+let stack: Int(256)
+
+Int -> Void 
+~IO ~stack ~active ~sp ~ip
+def eval(j):
+  switch j:
+    case :EXIT:
+      active = false
+    case :PUSH_INT:
+      stack[sp++] = program[ip++]
+	case :SAVE_LOCAL:
+	  locals[ip++] = stack[sp]
+	  sp--
+	case :ADD_INT:
+	  stack[sp - 1] = stack[sp - 1] + stack[sp]
+	  sp--
+	case :DISPLAY:
+	  echo(stack[sp - 1])
+
+def main:
+  let j: Int
+
+  while active:
+    j = fetch()
+    eval()
+    ip++
+
+  return 0
+
+  
