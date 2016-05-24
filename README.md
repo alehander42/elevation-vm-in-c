@@ -1,5 +1,7 @@
 # a vm in rust
 
+goals: lightweight concurrency (erlang-like), gc experiments
+
 ## ecode
 
 ```javascript
@@ -16,7 +18,22 @@ display
 
 ![screenshot of vm working with helpful color debug stack and opcode listings](http://imgur.com/d6iXDGLl.png)
 
+### opcodes:
+
+```ruby
+push_int 		<value>
+push_float 		<value>
+push_local 		<id>
+push_str 		<id>
+save_local 		<id>
+add_int 		<stack-1> <stack-2>
+sub_int 		<stack-1> <stack-2>
+mult_int 		<stack-1> <stack-2>
+display
+exit
+```
+
 ## todo
 
--[ ] parse ecode files
--[ ] run elevates concurrently
+- [x] parse ecode files: later
+- [ ] run elevates concurrently
