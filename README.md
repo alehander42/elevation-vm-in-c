@@ -2,6 +2,17 @@
 
 goals: lightweight concurrency (erlang-like), gc experiments
 
+## steps
+
+- [ ] simple implementation, correctness > optimisations
+- [ ] just map actors to threads in the beginning
+- [ ] basic gc ( mark & sweep?)
+
+## eventually
+
+- [ ] implement green threads
+- [ ] jit and optimisations
+
 ## ecode
 
 ```javascript
@@ -11,6 +22,8 @@ print(s + 4)
 
 ```bash
 push_int 	2
+save_local  0
+load_local  0
 push_int 	4
 add_int 	
 display
